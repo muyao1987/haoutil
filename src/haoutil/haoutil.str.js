@@ -40,7 +40,7 @@ haoutil.str = (function () {
         var numtime = Number(strtime);
 
         if (strtime < 60)
-            return strtime + "秒";
+            return strtime.toFixed(0) + "秒";
         else if (strtime >= 60 && strtime < 3600) {
             return Math.floor(strtime / 60) + "分钟" + Math.floor(strtime % 60) + "秒";
         }

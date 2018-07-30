@@ -2,25 +2,28 @@
 //js原生对象扩展
 
 
-//扩展array数组方法,不要用for(var i in arr)来循环数组
-Array.prototype.indexOf = Array.prototype.indexOf || function (val) {
-    for (var i = 0; i < this.length; i++) {
-        if (this[i] == val) return i;
-    }
-    return -1;
-}; 
-Array.prototype.remove = Array.prototype.remove || function (val) {
-    for (var i = 0; i < this.length; i++) {
-        if (this[i] == val) {
-            this.splice(i, 1);
-            break;
+//标识是否扩展数组对象
+if (!window.noArrayPrototype) {
+    //扩展array数组方法,不要用for(var i in arr)来循环数组
+    Array.prototype.indexOf = Array.prototype.indexOf || function (val) {
+        for (var i = 0; i < this.length; i++) {
+            if (this[i] == val) return i;
         }
-    }
-};
-Array.prototype.insert = Array.prototype.insert || function (item, index) {
-    if (index == null) index = 0;
-    this.splice(index, 0, item);
-};
+        return -1;
+    };
+    Array.prototype.remove = Array.prototype.remove || function (val) {
+        for (var i = 0; i < this.length; i++) {
+            if (this[i] == val) {
+                this.splice(i, 1);
+                break;
+            }
+        }
+    };
+    Array.prototype.insert = Array.prototype.insert || function (item, index) {
+        if (index == null) index = 0;
+        this.splice(index, 0, item);
+    }; 
+}
 
  
 
