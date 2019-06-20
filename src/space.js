@@ -19,13 +19,18 @@ haoutil.msg = function (msg) {
 };
 haoutil.tip = haoutil.msg;
 
+haoutil.oneMsg = function (msg, key) {
+    if (!haoutil.storage.get(key)) {
+        haoutil.msg(msg);
+        haoutil.storage.add(key, true);
+    }
+}
+
 haoutil.alert = function (msg, title) {
-    if (window.toastr)//此方法需要引用toastr 
-        toastr.warning(msg, title);
-    else if (window.layer)//此方法需要引用layer.js
+    if (window.layer)//此方法需要引用layer.js
         layer.alert(msg, {
             title: title || '提示',
-            skin: 'layui-layer-lan layer-mars-dialog2',
+            skin: 'layui-layer-lan layer-mars-dialog',
             closeBtn: 0,
             anim: 0
         });
@@ -69,39 +74,6 @@ haoutil.loading = {
     }
 };
 
-
-if (window.noCopy) {
-    function KeyDown() {
-        //console.log("ASCII代码是："+event.keyCode);
-
-        if (
-                event.keyCode == 112 ||             //屏蔽 F1   
-                event.keyCode == 123 ||             //屏蔽 F12 
-                (event.ctrlKey && event.keyCode == 82) ||       //屏蔽 Ctrl + R
-                (event.ctrlKey && event.keyCode == 78) ||       //屏蔽 Ctrl + N
-                (event.shiftKey && event.keyCode == 121) ||      //屏蔽  shift+F10
-                (event.altKey && event.keyCode == 115) ||        //屏蔽  Alt+F4
-            (event.srcElement.tagName == "A" && event.shiftKey)//屏蔽 shift 加鼠标左键新开一网页
-            ) {
-            event.keyCode = 0;
-            event.returnValue = false;
-            return false;
-        }
-
-        return true;
-    }
-    //键盘按下 
-    document.onkeydown = KeyDown;
-    document.oncontextmenu = function () {
-        event.returnValue = false;
-    };
-    document.onselectstart = function () {
-        event.returnValue = false;
-    };
-    document.oncopy = function () {
-        event.returnValue = false;
-    };
-}
 
 
 //function expose() {

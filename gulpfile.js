@@ -8,9 +8,9 @@ var uglify = require('gulp-uglify');
 //压缩混淆haoutil
 gulp.task('haoutil', function () {
     gulp.src([
-        "src/haoutil/space.js",
-        "src/haoutil/prototype.js",
-        "src/haoutil/haoutil.*.js",
+        "src/space.js",
+        "src/prototype.js",
+        "src/haoutil.*.js",
     ])
     .pipe(concat('haoutil-src.js'))
     .pipe(gulp.dest('dist/'))
@@ -23,5 +23,5 @@ gulp.task('haoutil', function () {
 
 
 gulp.task('build', ['haoutil'], function () {
-    gulp.watch('src/haoutil/*.js', ['haoutil']);
+    gulp.watch('src/*.js', ['haoutil']);
 });

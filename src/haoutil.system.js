@@ -88,20 +88,38 @@ haoutil.system = (function () {
         }
     }
   
-    function clone(from, to) {
-        if (from == null || typeof from != "object") return from;
-        if (from.constructor != Object && from.constructor != Array) return from;
-        if (from.constructor == Date || from.constructor == RegExp || from.constructor == Function ||
-            from.constructor == String || from.constructor == Number || from.constructor == Boolean)
-            return new from.constructor(from);
 
-        to = to || new from.constructor();
+    function clone(obj) {
+        if (null == obj || "object" != typeof obj) return obj;
 
-        for (var name in from) {
-            to[name] = typeof to[name] == "undefined" ? clone(from[name], null) : to[name];
+        // Handle Date
+        if (obj instanceof Date) {
+            var copy = new Date();
+            copy.setTime(obj.getTime());
+            return copy;
         }
 
-        return to;
+        // Handle Array
+        if (obj instanceof Array) {
+            var copy = [];
+            for (var i = 0, len = obj.length; i < len; ++i) {
+                copy[i] = clone(obj[i]);
+            }
+            return copy;
+        }
+
+        // Handle Object
+        if (typeof obj === 'object') {
+            var copy = {};
+            for (var attr in obj) {
+                if (attr == "_layer" || attr == "_layers" || attr == "_parent") continue;
+
+                if (obj.hasOwnProperty(attr))
+                    copy[attr] = clone(obj[attr]);
+            }
+            return copy;
+        }
+        return obj;
     }
 
     function jsonp(url, data, callback) {
