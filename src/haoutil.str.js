@@ -42,7 +42,8 @@ haoutil.str = (function () {
         if (strtime < 60)
             return strtime.toFixed(0) + "秒";
         else if (strtime >= 60 && strtime < 3600) {
-            return Math.floor(strtime / 60) + "分钟" + Math.floor(strtime % 60) + "秒";
+            var miao = Math.floor(strtime % 60);
+            return Math.floor(strtime / 60) + "分钟" + (miao != 0 ? (miao + "秒") : ""); 
         }
         else {
             strtime = Math.floor(strtime / 60); //秒转分钟

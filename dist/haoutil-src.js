@@ -1,9 +1,12 @@
-/* github地址：https://github.com/muyao1987/haoutil  木遥（QQ：346819890） */
+/* 
+  版权所有 木遥 for 火星科技 http://marsgis.cn
+  github地址：https://github.com/muyao1987/haoutil
+  更新时间 2019-8-24 10:46:13 
+*/
+ var haoutil = haoutil || {};
 
-var haoutil = haoutil || {};
-
-haoutil.version = "2.3";
-haoutil.name = "木遥通用常用JS方法类库";
+haoutil.version = "2.4";
+haoutil.name = "木遥 通用常用JS方法类库";
 haoutil.author = "木遥（QQ：346819890） https://github.com/muyao1987/haoutil";
 
 
@@ -73,33 +76,6 @@ haoutil.loading = {
         }
     }
 };
-
-
-
-//function expose() {
-//    var old = window.haoutil;
-
-//    haoutil.noConflict = function () {
-//        window.haoutil = old;
-//        return this;
-//    };
-
-//    window.haoutil = haoutil;
-//}
-
-//// define haoutil for Node module pattern loaders, including Browserify
-//if (typeof module === 'object' && typeof module.exports === 'object') {
-//    module.exports = haoutil;
-
-//    // define haoutil as an AMD module
-//} else if (typeof define === 'function' && define.amd) {
-//    define(haoutil);
-//}
-
-//// define gispace as a global haoutil variable, saving the original haoutil to restore later if needed
-//if (typeof window !== 'undefined') {
-//    expose();
-//}
 /* 2017-11-6 10:15:31 | 修改 木遥（QQ：346819890） */
 //js原生对象扩展
 
@@ -430,17 +406,20 @@ haoutil.storage = (function () {
     //添加
     function add(name, data) {
         _storage = window.localStorage;
+        if (_storage == null) return;
         _storage.setItem(name, data);
     }
 
     //获取cookie
     function get(name) {
         _storage = window.localStorage;
+        if (_storage == null) return;
         var data = _storage.getItem(name);
         return data;
     }
     function del(name) {
         _storage = window.localStorage;
+        if (_storage == null) return;
         _storage.removeItem(name);
     }
 
@@ -496,7 +475,8 @@ haoutil.str = (function () {
         if (strtime < 60)
             return strtime.toFixed(0) + "秒";
         else if (strtime >= 60 && strtime < 3600) {
-            return Math.floor(strtime / 60) + "分钟" + Math.floor(strtime % 60) + "秒";
+            var miao = Math.floor(strtime % 60);
+            return Math.floor(strtime / 60) + "分钟" + (miao != 0 ? (miao + "秒") : ""); 
         }
         else {
             strtime = Math.floor(strtime / 60); //秒转分钟

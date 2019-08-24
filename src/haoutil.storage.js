@@ -5,17 +5,20 @@
     //添加
     function add(name, data) {
         _storage = window.localStorage;
+        if (_storage == null) return;
         _storage.setItem(name, data);
     }
 
     //获取cookie
     function get(name) {
         _storage = window.localStorage;
+        if (_storage == null) return;
         var data = _storage.getItem(name);
         return data;
     }
     function del(name) {
         _storage = window.localStorage;
+        if (_storage == null) return;
         _storage.removeItem(name);
     }
 
