@@ -1,7 +1,7 @@
 /* 
   版权所有 木遥 for 火星科技 http://marsgis.cn
   github地址：https://github.com/muyao1987/haoutil
-  更新时间 2019-8-24 10:46:13 
+  更新时间 2019-10-18 09:07:07 
 */
  var haoutil = haoutil || {};
 
@@ -262,7 +262,7 @@ haoutil.file = (function () {
     //"文件 相关操作类";
     //============内部私有属性及方法============
 
-    function _download(fileName, blob) { 
+    function _download(fileName, blob) {
         var aLink = document.createElement('a');
         aLink.download = fileName;
         aLink.href = URL.createObjectURL(blob);
@@ -278,11 +278,17 @@ haoutil.file = (function () {
         _download(fileName, blob);
     }
 
-     
+
     //下载导出图片
-    function downloadImage(name, canvas) { 
-        var base64 = canvas.toDataURL("image/png"); 
-        var blob = base64Img2Blob(base64); 
+    function downloadImage(name, canvas) {
+        var base64 = canvas.toDataURL("image/png");
+        var blob = base64Img2Blob(base64);
+        _download(name + '.png', blob);
+    }
+
+    //下载导出图片
+    function downloadBase64Image(name, base64) { 
+        var blob = base64Img2Blob(base64);
         _download(name + '.png', blob);
     }
 
@@ -302,10 +308,11 @@ haoutil.file = (function () {
 
 
     //===========对外公开的属性及方法=========
-    return { 
+    return {
         download: _download,
         downloadFile: downloadFile,
         downloadImage: downloadImage,
+        downloadBase64Image: downloadBase64Image,
         base64Img2Blob: base64Img2Blob
     };
 })();
@@ -447,24 +454,69 @@ haoutil.str = (function () {
         }
     }
 
-    //格式化距离长度
-    function formatLength(strlen) {
-        var numlen = Number(strlen);
 
-        if (numlen < 1000)
-            return numlen.toFixed(2) + "米";
-        else
-            return (numlen / 1000).toFixed(2) + "千米";
+    /**  单位换算，格式化显示长度     */
+    function formatLength(val, unit) {
+        if (val == null) return "";
+
+        if (unit == null || unit == "auto") {
+            if (val < 1000)
+                unit = "m";
+            else
+                unit = "km";
+        }
+
+        var valstr = "";
+        switch (unit) {
+            default:
+            case "m":
+                valstr = val.toFixed(2) + '米';
+                break;
+            case "km":
+                valstr = (val * 0.001).toFixed(2) + '公里';
+                break;
+            case "mile":
+                valstr = (val * 0.00054).toFixed(2) + '海里';
+                break;
+            case "zhang":
+                valstr = (val * 0.3).toFixed(2) + '丈';
+                break;
+        }
+        return valstr;
     }
 
-    //格式化面积
-    function formatArea(strarea) {
-        var numlen = Number(strarea);
 
-        if (strarea < 1000000)
-            return strarea.toFixed(2) + "平方米";
-        else
-            return (strarea / 1000000).toFixed(2) + "平方公里";
+
+
+    /**  进行单位换算，格式化显示面积    */
+    function formatArea(val, unit) {
+        if (val == null) return "";
+
+        if (unit == null || unit == "auto") {
+            if (val < 1000000)
+                unit = "m";
+            else
+                unit = "km";
+        }
+
+        var valstr = "";
+        switch (unit) {
+            default:
+            case "m":
+                valstr = val.toFixed(2) + '平方米';
+                break;
+            case "km":
+                valstr = (val / 1000000).toFixed(2) + '平方公里';
+                break;
+            case "mu":
+                valstr = (val * 0.0015).toFixed(2) + '亩';
+                break;
+            case "ha":
+                valstr = (val * 0.0001).toFixed(2) + '公顷';
+                break;
+        }
+
+        return valstr;
     }
 
 
@@ -476,7 +528,7 @@ haoutil.str = (function () {
             return strtime.toFixed(0) + "秒";
         else if (strtime >= 60 && strtime < 3600) {
             var miao = Math.floor(strtime % 60);
-            return Math.floor(strtime / 60) + "分钟" + (miao != 0 ? (miao + "秒") : ""); 
+            return Math.floor(strtime / 60) + "分钟" + (miao != 0 ? (miao + "秒") : "");
         }
         else {
             strtime = Math.floor(strtime / 60); //秒转分钟
