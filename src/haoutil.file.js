@@ -3,7 +3,7 @@ haoutil.file = (function () {
     //"文件 相关操作类";
     //============内部私有属性及方法============
 
-    function _download(fileName, blob) { 
+    function _download(fileName, blob) {
         var aLink = document.createElement('a');
         aLink.download = fileName;
         aLink.href = URL.createObjectURL(blob);
@@ -19,11 +19,17 @@ haoutil.file = (function () {
         _download(fileName, blob);
     }
 
-     
+
     //下载导出图片
-    function downloadImage(name, canvas) { 
-        var base64 = canvas.toDataURL("image/png"); 
-        var blob = base64Img2Blob(base64); 
+    function downloadImage(name, canvas) {
+        var base64 = canvas.toDataURL("image/png");
+        var blob = base64Img2Blob(base64);
+        _download(name + '.png', blob);
+    }
+
+    //下载导出图片
+    function downloadBase64Image(name, base64) { 
+        var blob = base64Img2Blob(base64);
         _download(name + '.png', blob);
     }
 
@@ -43,10 +49,11 @@ haoutil.file = (function () {
 
 
     //===========对外公开的属性及方法=========
-    return { 
+    return {
         download: _download,
         downloadFile: downloadFile,
         downloadImage: downloadImage,
+        downloadBase64Image: downloadBase64Image,
         base64Img2Blob: base64Img2Blob
     };
 })();
