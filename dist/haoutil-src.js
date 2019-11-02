@@ -1,13 +1,14 @@
 /* 
   版权所有 木遥 for 火星科技 http://marsgis.cn
   github地址：https://github.com/muyao1987/haoutil
-  更新时间 2019-10-18 09:07:07 
+  更新时间 2019-11-2 15:42:31 
 */
  var haoutil = haoutil || {};
 
 haoutil.version = "2.4";
 haoutil.name = "木遥 通用常用JS方法类库";
 haoutil.author = "木遥（QQ：346819890） https://github.com/muyao1987/haoutil";
+haoutil.update = "2019-11-02";
 
 
 
@@ -631,9 +632,10 @@ haoutil.system = (function () {
     // 系统级  或 浏览器 相关操作类"; 
     //============内部私有属性及方法============
 
-    //url参数获取
-    function getRequest() {
-        var url = location.search; //获取url中"?"符后的字串   
+    //url参数获取 
+    function getRequest(target) {
+        target = target || window;
+        var url = target.location.search; //获取url中"?"符后的字串   
         var theRequest = new Object();
         if (url.indexOf("?") != -1) {
             var str = url.substr(1);
@@ -643,10 +645,11 @@ haoutil.system = (function () {
             }
         }
         return theRequest;
-    } 
-    function getRequestByName(name,defval) {
+    }
+    function getRequestByName(name, defval, target) {
+        target = target || window;
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var r = window.location.search.substr(1).match(reg);
+        var r = target.location.search.substr(1).match(reg);
         if (r != null) return decodeURI(r[2]);
         return defval;
     }
@@ -673,22 +676,22 @@ haoutil.system = (function () {
             var ver = Number(explorer.match(/msie ([\d]+)/)[1]);
             return { type: "IE", version: ver };
         }
-            //firefox 
+        //firefox 
         else if (explorer.indexOf("firefox") >= 0) {
             var ver = Number(explorer.match(/firefox\/([\d]+)/)[1]);
             return { type: "Firefox", version: ver };
         }
-            //Chrome
+        //Chrome
         else if (explorer.indexOf("chrome") >= 0) {
             var ver = Number(explorer.match(/chrome\/([\d]+)/)[1]);
             return { type: "Chrome", version: ver };
         }
-            //Opera
+        //Opera
         else if (explorer.indexOf("opera") >= 0) {
             var ver = Number(explorer.match(/opera.([\d]+)/)[1]);
             return { type: "Opera", version: ver };
         }
-            //Safari
+        //Safari
         else if (explorer.indexOf("Safari") >= 0) {
             var ver = Number(explorer.match(/version\/([\d]+)/)[1]);
             return { type: "Safari", version: ver };
@@ -715,7 +718,7 @@ haoutil.system = (function () {
             return true;
         }
     }
-  
+
 
     function clone(obj) {
         if (null == obj || "object" != typeof obj) return obj;
@@ -810,7 +813,7 @@ haoutil.system = (function () {
     }
 
     //===========对外公开的属性及方法=========
-    return { 
+    return {
         getRequest: getRequest,
         getRequestByName: getRequestByName,
         getExplorerInfo: getExplorerInfo,
@@ -821,6 +824,6 @@ haoutil.system = (function () {
         getHtml: getHtml,
         loadCss: loadCss,
         loadJs: loadJs,
-        loadResource:loadResource
+        loadResource: loadResource
     };
 })();
