@@ -17,7 +17,8 @@ haoutil.str = (function () {
 
     /**  单位换算，格式化显示长度     */
     function formatLength(val, unit) {
-        if (val == null) return "";
+        if (val == null) return ""; 
+        val = Number(val);
 
         if (unit == null || unit == "auto") {
             if (val < 1000)
@@ -51,6 +52,7 @@ haoutil.str = (function () {
     /**  进行单位换算，格式化显示面积    */
     function formatArea(val, unit) {
         if (val == null) return "";
+        val = Number(val);
 
         if (unit == null || unit == "auto") {
             if (val < 1000000)

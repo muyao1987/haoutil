@@ -1,14 +1,14 @@
 /* 
   版权所有 木遥 for 火星科技 http://marsgis.cn
   github地址：https://github.com/muyao1987/haoutil
-  更新时间 2019-11-2 15:42:31 
+  更新时间 2019-12-4 08:43:04 
 */
  var haoutil = haoutil || {};
 
 haoutil.version = "2.4";
 haoutil.name = "木遥 通用常用JS方法类库";
 haoutil.author = "木遥（QQ：346819890） https://github.com/muyao1987/haoutil";
-haoutil.update = "2019-11-02";
+haoutil.update = "2019-12-05";
 
 
 
@@ -458,7 +458,8 @@ haoutil.str = (function () {
 
     /**  单位换算，格式化显示长度     */
     function formatLength(val, unit) {
-        if (val == null) return "";
+        if (val == null) return ""; 
+        val = Number(val);
 
         if (unit == null || unit == "auto") {
             if (val < 1000)
@@ -492,6 +493,7 @@ haoutil.str = (function () {
     /**  进行单位换算，格式化显示面积    */
     function formatArea(val, unit) {
         if (val == null) return "";
+        val = Number(val);
 
         if (unit == null || unit == "auto") {
             if (val < 1000000)
