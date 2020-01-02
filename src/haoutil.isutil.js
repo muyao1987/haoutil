@@ -4,7 +4,7 @@ haoutil.isutil = (function () {
 
     //============内部私有属性及方法============
     function isArray(obj) {
-        return (typeof obj == 'object') && obj.constructor == Array;
+        return Array.isArray(obj);//(typeof obj == 'object') && obj.constructor == Array;
     }
 
     function isString(str) {

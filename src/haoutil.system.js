@@ -102,7 +102,7 @@ haoutil.system = (function () {
         }
 
         // Handle Array
-        if (obj instanceof Array) {
+        if (Array.isArray(obj)) {
             var copy = [];
             for (var i = 0, len = obj.length; i < len; ++i) {
                 copy[i] = clone(obj[i]);
