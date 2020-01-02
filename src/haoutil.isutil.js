@@ -4,9 +4,13 @@ haoutil.isutil = (function () {
 
     //============内部私有属性及方法============
     function isArray(obj) {
-        return Array.isArray(obj);//(typeof obj == 'object') && obj.constructor == Array;
-    }
-
+        if (typeof Array.isArray === "function") {
+            return Array.isArray(obj);
+        } else {
+            return Object.prototype.toString.call(obj) === "[object Array]";
+        }
+    } 
+    
     function isString(str) {
         return (typeof str == 'string') && str.constructor == String;
     }

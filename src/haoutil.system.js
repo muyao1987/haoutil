@@ -95,14 +95,14 @@ haoutil.system = (function () {
         if (null == obj || "object" != typeof obj) return obj;
 
         // Handle Date
-        if (obj instanceof Date) {
+        if (haoutil.isutil.isDate(obj)) {
             var copy = new Date();
             copy.setTime(obj.getTime());
             return copy;
         }
 
         // Handle Array
-        if (Array.isArray(obj)) {
+        if (haoutil.isutil.isArray(obj)) {
             var copy = [];
             for (var i = 0, len = obj.length; i < len; ++i) {
                 copy[i] = clone(obj[i]);
