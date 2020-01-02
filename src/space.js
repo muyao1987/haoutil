@@ -3,7 +3,7 @@ var haoutil = haoutil || {};
 haoutil.version = "2.4";
 haoutil.name = "木遥 通用常用JS方法类库";
 haoutil.author = "木遥（QQ：346819890） https://github.com/muyao1987/haoutil";
-haoutil.update = "2019-12-05";
+haoutil.update = "2020-1-2";
 
 
 

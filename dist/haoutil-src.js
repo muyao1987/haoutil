@@ -1,14 +1,14 @@
 /* 
   版权所有 木遥 for 火星科技 http://marsgis.cn
   github地址：https://github.com/muyao1987/haoutil
-  更新时间 2019-12-4 08:43:04 
+  更新时间 2020-1-2 21:14:40 
 */
  var haoutil = haoutil || {};
 
 haoutil.version = "2.4";
 haoutil.name = "木遥 通用常用JS方法类库";
 haoutil.author = "木遥（QQ：346819890） https://github.com/muyao1987/haoutil";
-haoutil.update = "2019-12-05";
+haoutil.update = "2020-1-2";
 
 
 
@@ -323,9 +323,13 @@ haoutil.isutil = (function () {
 
     //============内部私有属性及方法============
     function isArray(obj) {
-        return (typeof obj == 'object') && obj.constructor == Array;
-    }
-
+        if (typeof Array.isArray === "function") {
+            return Array.isArray(obj);
+        } else {
+            return Object.prototype.toString.call(obj) === "[object Array]";
+        }
+    } 
+    
     function isString(str) {
         return (typeof str == 'string') && str.constructor == String;
     }
@@ -726,14 +730,14 @@ haoutil.system = (function () {
         if (null == obj || "object" != typeof obj) return obj;
 
         // Handle Date
-        if (obj instanceof Date) {
+        if (haoutil.isutil.isDate(obj)) {
             var copy = new Date();
             copy.setTime(obj.getTime());
             return copy;
         }
 
         // Handle Array
-        if (obj instanceof Array) {
+        if (haoutil.isutil.isArray(obj)) {
             var copy = [];
             for (var i = 0, len = obj.length; i < len; ++i) {
                 copy[i] = clone(obj[i]);
