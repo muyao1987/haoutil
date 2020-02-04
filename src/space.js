@@ -9,6 +9,14 @@ haoutil.update = "2020-1-2";
 
 
 haoutil.msg = function (msg) {
+    if(haoutil.isutil.isNull(msg)){
+        msg = "未知";
+    }
+    else{
+        if(haoutil.isutil.isObject(msg)){
+            msg = JSON.stringify(msg);
+        }
+    }
     if (window.toastr)//此方法需要引用toastr 
         toastr.info(msg);
     else if (window.layer)
@@ -26,6 +34,14 @@ haoutil.oneMsg = function (msg, key) {
 }
 
 haoutil.alert = function (msg, title) {
+    if(haoutil.isutil.isNull(msg)){
+        msg = "未知";
+    }
+    else{
+        if(haoutil.isutil.isObject(msg)){
+            msg = JSON.stringify(msg);
+        }
+    }
     if (window.layer)//此方法需要引用layer.js
         layer.alert(msg, {
             title: title || '提示',

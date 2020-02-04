@@ -1,7 +1,7 @@
 /* 
   版权所有 木遥 for 火星科技 http://marsgis.cn
   github地址：https://github.com/muyao1987/haoutil
-  更新时间 2020-1-2 21:14:40 
+  更新时间 2020-2-4 19:52:09 
 */
  var haoutil = haoutil || {};
 
@@ -14,6 +14,14 @@ haoutil.update = "2020-1-2";
 
 
 haoutil.msg = function (msg) {
+    if(haoutil.isutil.isNull(msg)){
+        msg = "未知";
+    }
+    else{
+        if(haoutil.isutil.isObject(msg)){
+            msg = JSON.stringify(msg);
+        }
+    }
     if (window.toastr)//此方法需要引用toastr 
         toastr.info(msg);
     else if (window.layer)
@@ -31,6 +39,14 @@ haoutil.oneMsg = function (msg, key) {
 }
 
 haoutil.alert = function (msg, title) {
+    if(haoutil.isutil.isNull(msg)){
+        msg = "未知";
+    }
+    else{
+        if(haoutil.isutil.isObject(msg)){
+            msg = JSON.stringify(msg);
+        }
+    }
     if (window.layer)//此方法需要引用layer.js
         layer.alert(msg, {
             title: title || '提示',
