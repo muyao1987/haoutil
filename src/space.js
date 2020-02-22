@@ -13,7 +13,7 @@ haoutil.msg = function (msg) {
         msg = "未知";
     }
     else{
-        if(haoutil.isutil.isObject(msg)){
+        if(typeof msg == 'object'){
             msg = JSON.stringify(msg);
         }
     }
@@ -38,7 +38,7 @@ haoutil.alert = function (msg, title) {
         msg = "未知";
     }
     else{
-        if(haoutil.isutil.isObject(msg)){
+        if(typeof msg == 'object'){
             msg = JSON.stringify(msg);
         }
     }

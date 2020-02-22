@@ -1,7 +1,7 @@
 /* 
   版权所有 木遥 for 火星科技 http://marsgis.cn
   github地址：https://github.com/muyao1987/haoutil
-  更新时间 2020-2-4 19:52:09 
+  更新时间 2020-2-22 09:56:39 
 */
  var haoutil = haoutil || {};
 
@@ -18,7 +18,7 @@ haoutil.msg = function (msg) {
         msg = "未知";
     }
     else{
-        if(haoutil.isutil.isObject(msg)){
+        if(typeof msg == 'object'){
             msg = JSON.stringify(msg);
         }
     }
@@ -43,7 +43,7 @@ haoutil.alert = function (msg, title) {
         msg = "未知";
     }
     else{
-        if(haoutil.isutil.isObject(msg)){
+        if(typeof msg == 'object'){
             msg = JSON.stringify(msg);
         }
     }
