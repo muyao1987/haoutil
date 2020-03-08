@@ -1,16 +1,16 @@
 {
     "name": "haoutil",
-    "version": "2.4.0",
+    "version": "2.5.0",
     "description": "muyao  haoutil lib",
     "main": "gulpfile.js",
+    "keywords": [
+        "haoutil",
+        "jslib"
+    ],
     "scripts": {
         "build": "gulp build",
         "build2": "gulp build-watch"
     },
-    "keywords": [ "muyao", "hao", "lib" ],
-    "author": "木遥（QQ：346819890）",
-    "git":"https://github.com/muyao1987/haoutil",
-    "license": "ISC",
     "devDependencies": {
         "gulp": "^3.9.0",
         "gulp-concat": "^2.6.0",
@@ -19,5 +19,19 @@
         "gulp-less": "^3.0.5",
         "gulp-header": "^2.0.7",
         "gulp-uglify": "^1.5.1"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/muyao1987/haoutil.git"
+    },
+    "bugs": {
+        "url": "https://github.com/muyao1987/haoutil/issues",
+        "email": "wh@marsgis.cn"
+    },
+    "author": {
+        "name": "火星科技 木遥",
+        "url": "http://www.marsgis.cn"
+    },
+    "license": "ISC",
+    "homepage": "https://github.com/muyao1987/haoutil"
 }
