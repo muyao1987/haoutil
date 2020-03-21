@@ -1,9 +1,11 @@
-/* 
-  版权所有 木遥 for 火星科技 http://marsgis.cn
-  github地址：https://github.com/muyao1987/haoutil
-  更新时间 2020-2-22 09:56:39 
+/**
+*  JS常用静态方法类库  
+*  源码地址：https://github.com/muyao1987/haoutil
+*  版本信息：v2.5.1
+*  编译日期：2020-3-21 09:47:09    
+*  版权所有：Copyright by 火星科技 木遥  http://marsgis.cn
 */
- var haoutil = haoutil || {};
+var haoutil = haoutil || {};
 
 haoutil.version = "2.4";
 haoutil.name = "木遥 通用常用JS方法类库";
@@ -742,8 +744,10 @@ haoutil.system = (function () {
     }
 
 
-    function clone(obj) {
+    function clone(obj,removeKeys) {
         if (null == obj || "object" != typeof obj) return obj;
+
+        if (removeKeys == null) removeKeys = ["_parent","_class"];//排除一些不拷贝的属性
 
         // Handle Date
         if (haoutil.isutil.isDate(obj)) {
@@ -756,7 +760,7 @@ haoutil.system = (function () {
         if (haoutil.isutil.isArray(obj)) {
             var copy = [];
             for (var i = 0, len = obj.length; i < len; ++i) {
-                copy[i] = clone(obj[i]);
+                copy[i] = clone(obj[i], removeKeys);
             }
             return copy;
         }
@@ -765,10 +769,11 @@ haoutil.system = (function () {
         if (typeof obj === 'object') {
             var copy = {};
             for (var attr in obj) {
-                if (attr == "_layer" || attr == "_layers" || attr == "_parent") continue;
+                if (typeof attr === 'function') continue;
+                if (removeKeys.indexOf(attr) != -1) continue;
 
                 if (obj.hasOwnProperty(attr))
-                    copy[attr] = clone(obj[attr]);
+                    copy[attr] = clone(obj[attr], removeKeys);
             }
             return copy;
         }
