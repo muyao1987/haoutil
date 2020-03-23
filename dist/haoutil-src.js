@@ -9,7 +9,7 @@ var haoutil = haoutil || {};
 
 haoutil.version = "2.4";
 haoutil.name = "木遥 通用常用JS方法类库";
-haoutil.author = "木遥（QQ：346819890） https://github.com/muyao1987/haoutil";
+haoutil.author = "木遥（微信:  http://marsgis.cn/weixin.html） https://github.com/muyao1987/haoutil";
 haoutil.update = "2020-1-2";
 
 
@@ -95,7 +95,7 @@ haoutil.loading = {
         }
     }
 };
-/* 2017-11-6 10:15:31 | 修改 木遥（QQ：346819890） */
+/* 2017-11-6 10:15:31 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
 //js原生对象扩展
 
 
@@ -180,7 +180,7 @@ Date.prototype.format = function (fmt) {
     }
     return fmt;
 };
-/* 2017-12-8 09:39:39 | 修改 木遥（QQ：346819890） */
+/* 2017-12-8 09:39:39 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
 haoutil.color = (function () {
     // "颜色 相关操作类";
     //============内部私有属性及方法============
@@ -203,7 +203,7 @@ haoutil.color = (function () {
         random: random
     };
 })();
-/* 2017-10-10 13:32:56 | 修改 木遥（QQ：346819890） */
+/* 2017-10-10 13:32:56 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
 haoutil.cookie = (function () {
     //"cookie 相关操作类";
     //============内部私有属性及方法============ 
@@ -276,7 +276,7 @@ haoutil.cookie = (function () {
     };
 })();
 
-/* 2017-8-31 17:26:30 | 修改 木遥（QQ：346819890） */
+/* 2017-8-31 17:26:30 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
 haoutil.file = (function () {
     //"文件 相关操作类";
     //============内部私有属性及方法============
@@ -335,7 +335,7 @@ haoutil.file = (function () {
         base64Img2Blob: base64Img2Blob
     };
 })();
-/* 2017-12-5 13:38:32 | 修改 木遥（QQ：346819890） */
+/* 2017-12-5 13:38:32 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
 haoutil.isutil = (function () {
     // "判断 相关操作类";
 
@@ -394,7 +394,7 @@ haoutil.isutil = (function () {
         isObject: isObject
     };
 })();
-/* 2017-8-10 13:50:49 | 修改 木遥（QQ：346819890） */
+/* 2017-8-10 13:50:49 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
 haoutil.math = (function () {
    // "数学 相关操作类";
     //============内部私有属性及方法============
@@ -461,7 +461,7 @@ haoutil.storage = (function () {
     };
 })();
 
-/* 2017-10-27 08:39:39 | 修改 木遥（QQ：346819890） */
+/* 2017-10-27 08:39:39 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
 haoutil.str = (function () {
     // "字符串 相关操作类";
     //============内部私有属性及方法============
@@ -651,7 +651,7 @@ haoutil.str = (function () {
     };
 
 })();
-/* 2017-10-27 08:31:05 | 修改 木遥（QQ：346819890） */
+/* 2017-10-27 08:31:05 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
 haoutil.system = (function () {
     // 系统级  或 浏览器 相关操作类"; 
     //============内部私有属性及方法============
