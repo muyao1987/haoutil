@@ -5,23 +5,28 @@ haoutil.system = (function () {
 
     //url参数获取 
     function getRequest(target) {
-        target = target || window;
-        var url = target.location.search; //获取url中"?"符后的字串   
         var theRequest = new Object();
-        if (url.indexOf("?") != -1) {
-            var str = url.substr(1);
-            var strs = str.split("&");
-            for (var i = 0; i < strs.length; i++) {
-                theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+        try {//屏蔽跨域时报错
+            target = target || window;
+            var url = target.location.search; //获取url中"?"符后的字串   
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                var strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+                }
             }
-        }
+        } catch (e) { }
         return theRequest;
     }
     function getRequestByName(name, defval, target) {
-        target = target || window;
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var r = target.location.search.substr(1).match(reg);
-        if (r != null) return decodeURI(r[2]);
+        try {
+            target = target || window;
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = target.location.search.substr(1).match(reg);
+            if (r != null) return decodeURI(r[2]);
+
+        } catch (e) { }
         return defval;
     }
 
@@ -91,10 +96,10 @@ haoutil.system = (function () {
     }
 
 
-    function clone(obj,removeKeys) {
+    function clone(obj, removeKeys) {
         if (null == obj || "object" != typeof obj) return obj;
 
-        if (removeKeys == null) removeKeys = ["_parent","_class"];//排除一些不拷贝的属性
+        if (removeKeys == null) removeKeys = ["_parent", "_class"];//排除一些不拷贝的属性
 
         // Handle Date
         if (haoutil.isutil.isDate(obj)) {
