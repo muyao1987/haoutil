@@ -2,7 +2,7 @@
 *  JS常用静态方法类库  
 *  源码地址：https://github.com/muyao1987/haoutil
 *  版本信息：v2.5.1
-*  编译日期：2020-3-26 19:31:59    
+*  编译日期：2020-6-11 15:26:11    
 *  版权所有：Copyright by 火星科技 木遥  http://marsgis.cn
 */
 var haoutil = haoutil || {};
@@ -141,6 +141,7 @@ String.prototype.replaceAll = String.prototype.replaceAll || function (oldstring
  * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q) 可以用 1-2 个占位符 
  * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) 
  * 
+ * (new Date()).format("yyyy-MM-dd HH:mm:ss") ==> 2017-01-09 08:35:26 
  * (new Date()).format("yyyy-M-d HH:mm:ss") ==> 2017-1-9 08:35:26
  * (new Date()).format("yyyy-M-d h:m:s.S") ==> 2016-7-2 8:9:4.18 
  * (new Date()).format("yyyy-MM-dd hh:mm:ss.S") ==> 2016-07-02 08:09:04.423 
@@ -660,7 +661,7 @@ haoutil.system = (function () {
     //url参数获取 
     function getRequest(target) {
         var theRequest = new Object();
-        try {
+        try {//屏蔽跨域时报错
             target = target || window;
             var url = target.location.search; //获取url中"?"符后的字串   
             if (url.indexOf("?") != -1) {
@@ -750,10 +751,11 @@ haoutil.system = (function () {
     }
 
 
-    function clone(obj, removeKeys) {
-        if (null == obj || "object" != typeof obj) return obj;
+    function clone(obj, removeKeys, level) {
+        if (level == null) level = 9;  //避免死循环，拷贝的层级最大深度
+        if (removeKeys == null) removeKeys = ["_layer"];
 
-        if (removeKeys == null) removeKeys = ["_parent", "_class"];//排除一些不拷贝的属性
+        if (null == obj || "object" != typeof obj) return obj;
 
         // Handle Date
         if (haoutil.isutil.isDate(obj)) {
@@ -763,25 +765,28 @@ haoutil.system = (function () {
         }
 
         // Handle Array
-        if (haoutil.isutil.isArray(obj)) {
+        if (haoutil.isutil.isArray(obj) && level >= 0) {
             var copy = [];
             for (var i = 0, len = obj.length; i < len; ++i) {
-                copy[i] = clone(obj[i], removeKeys);
+                copy[i] = clone(obj[i], removeKeys, level - 1);
             }
             return copy;
         }
 
         // Handle Object
-        if (typeof obj === 'object') {
-            var copy = {};
-            for (var attr in obj) {
-                if (typeof attr === 'function') continue;
-                if (removeKeys.indexOf(attr) != -1) continue;
+        if (typeof obj === 'object' && level >= 0) {
+            try {
+                var copy = {};
+                for (var attr in obj) {
+                    if (typeof attr === 'function') continue;
+                    if (removeKeys.indexOf(attr) != -1) continue;
 
-                if (obj.hasOwnProperty(attr))
-                    copy[attr] = clone(obj[attr], removeKeys);
+                    if (obj.hasOwnProperty(attr))
+                        copy[attr] = clone(obj[attr], removeKeys, level - 1);
+                }
+                return copy;
             }
-            return copy;
+            catch (e) { console.log(e); }
         }
         return obj;
     }

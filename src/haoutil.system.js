@@ -96,10 +96,11 @@ haoutil.system = (function () {
     }
 
 
-    function clone(obj, removeKeys) {
-        if (null == obj || "object" != typeof obj) return obj;
+    function clone(obj, removeKeys, level) {
+        if (level == null) level = 9;  //避免死循环，拷贝的层级最大深度
+        if (removeKeys == null) removeKeys = ["_layer"];
 
-        if (removeKeys == null) removeKeys = ["_parent", "_class"];//排除一些不拷贝的属性
+        if (null == obj || "object" != typeof obj) return obj;
 
         // Handle Date
         if (haoutil.isutil.isDate(obj)) {
@@ -109,25 +110,28 @@ haoutil.system = (function () {
         }
 
         // Handle Array
-        if (haoutil.isutil.isArray(obj)) {
+        if (haoutil.isutil.isArray(obj) && level >= 0) {
             var copy = [];
             for (var i = 0, len = obj.length; i < len; ++i) {
-                copy[i] = clone(obj[i], removeKeys);
+                copy[i] = clone(obj[i], removeKeys, level - 1);
             }
             return copy;
         }
 
         // Handle Object
-        if (typeof obj === 'object') {
-            var copy = {};
-            for (var attr in obj) {
-                if (typeof attr === 'function') continue;
-                if (removeKeys.indexOf(attr) != -1) continue;
+        if (typeof obj === 'object' && level >= 0) {
+            try {
+                var copy = {};
+                for (var attr in obj) {
+                    if (typeof attr === 'function') continue;
+                    if (removeKeys.indexOf(attr) != -1) continue;
 
-                if (obj.hasOwnProperty(attr))
-                    copy[attr] = clone(obj[attr], removeKeys);
+                    if (obj.hasOwnProperty(attr))
+                        copy[attr] = clone(obj[attr], removeKeys, level - 1);
+                }
+                return copy;
             }
-            return copy;
+            catch (e) { console.log(e); }
         }
         return obj;
     }
