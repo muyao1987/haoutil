@@ -1,16 +1,16 @@
 /**
 *  JS常用静态方法类库  
 *  源码地址：https://github.com/muyao1987/haoutil
-*  版本信息：v2.5.1
-*  编译日期：2020-6-11 15:26:11    
+*  版本信息：v2.5.2
+*  编译日期：2021-5-21 09:58:36    
 *  版权所有：Copyright by 火星科技 木遥  http://marsgis.cn
 */
 var haoutil = haoutil || {};
 
-haoutil.version = "2.4";
+haoutil.version = "2.5.2";
 haoutil.name = "木遥 通用常用JS方法类库";
 haoutil.author = "木遥 , 微信: http://marsgis.cn/weixin.html";
-haoutil.update = "2020-1-2";
+haoutil.update = "2021-5-21";
 haoutil.website ='https://github.com/muyao1987/haoutil'
 
 
@@ -96,32 +96,31 @@ haoutil.loading = {
         }
     }
 };
-/* 2017-11-6 10:15:31 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
 //js原生对象扩展
 
 
-//标识是否扩展数组对象
-if (!window.noArrayPrototype) {
-    //扩展array数组方法,不要用for(var i in arr)来循环数组
-    Array.prototype.indexOf = Array.prototype.indexOf || function (val) {
-        for (var i = 0; i < this.length; i++) {
-            if (this[i] == val) return i;
-        }
-        return -1;
-    };
-    Array.prototype.remove = Array.prototype.remove || function (val) {
-        for (var i = 0; i < this.length; i++) {
-            if (this[i] == val) {
-                this.splice(i, 1);
-                break;
-            }
-        }
-    };
-    Array.prototype.insert = Array.prototype.insert || function (item, index) {
-        if (index == null) index = 0;
-        this.splice(index, 0, item);
-    }; 
-}
+// //标识是否扩展数组对象
+// if (!window.noArrayPrototype) {
+//     //扩展array数组方法,不要用for(var i in arr)来循环数组
+//     // Array.prototype.indexOf = Array.prototype.indexOf || function (val) {
+//     //     for (var i = 0; i < this.length; i++) {
+//     //         if (this[i] == val) return i;
+//     //     }
+//     //     return -1;
+//     // };
+//     // Array.prototype.remove = Array.prototype.remove || function (val) {
+//     //     for (var i = 0; i < this.length; i++) {
+//     //         if (this[i] == val) {
+//     //             this.splice(i, 1);
+//     //             break;
+//     //         }
+//     //     }
+//     // };
+//     // Array.prototype.insert = Array.prototype.insert || function (item, index) {
+//     //     if (index == null) index = 0;
+//     //     this.splice(index, 0, item);
+//     // }; 
+// }
 
  
 
@@ -182,6 +181,37 @@ Date.prototype.format = function (fmt) {
     }
     return fmt;
 };
+/* 2017-10-27 08:39:39 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
+haoutil.array = (function () { 
+  //============内部私有属性及方法============
+
+  function indexOf(arr,val) {
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] == val) return i;
+    }
+    return -1;
+  }
+  function remove(arr,val) {
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] == val) {
+        arr.splice(i, 1);
+        break;
+      }
+    }
+  }
+  function insert(arr,item, index) {
+    if (index == null) index = 0;
+    arr.splice(index, 0, item);
+  }
+
+  //===========对外公开的属性及方法=========
+  return {
+    indexOf: indexOf,
+    remove: remove,
+    insert: insert, 
+  };
+})();
+
 /* 2017-12-8 09:39:39 | 修改 木遥（微信:  http://marsgis.cn/weixin.html） */
 haoutil.color = (function () {
     // "颜色 相关操作类";

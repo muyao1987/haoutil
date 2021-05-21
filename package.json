@@ -1,6 +1,6 @@
 {
     "name": "haoutil",
-    "version": "2.5.1",
+    "version": "2.5.2",
     "description": "JS常用静态方法类库",
     "main": "gulpfile.js",
     "keywords": [
