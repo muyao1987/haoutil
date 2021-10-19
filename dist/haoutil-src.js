@@ -1,7 +1,7 @@
 /**
 *  JS常用静态方法类库  
 *  源码地址：https://github.com/muyao1987/haoutil
-*  版本信息：v2.5.3
+*  版本信息：v2.5.4
 *  编译日期：2021-10-19 19:06:03    
 *  版权所有：Copyright by 火星科技 木遥  http://marsgis.cn
 */
