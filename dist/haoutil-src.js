@@ -1,16 +1,16 @@
 /**
 *  JS常用静态方法类库  
 *  源码地址：https://github.com/muyao1987/haoutil
-*  版本信息：v2.5.2
-*  编译日期：2021-5-21 09:58:36    
+*  版本信息：v2.5.3
+*  编译日期：2021-10-19 19:06:03    
 *  版权所有：Copyright by 火星科技 木遥  http://marsgis.cn
 */
 var haoutil = haoutil || {};
 
-haoutil.version = "2.5.2";
+haoutil.version = "2.5.4";
 haoutil.name = "木遥 通用常用JS方法类库";
 haoutil.author = "木遥 , 微信: http://marsgis.cn/weixin.html";
-haoutil.update = "2021-5-21";
+haoutil.update = "2021-10-19";
 haoutil.website ='https://github.com/muyao1987/haoutil'
 
 
@@ -579,7 +579,7 @@ haoutil.str = (function () {
 
     //格式化时间
     function formatTime(strtime) {
-        var numtime = Number(strtime);
+        strtime = Number(strtime)||0;
 
         if (strtime < 60)
             return strtime.toFixed(0) + "秒";

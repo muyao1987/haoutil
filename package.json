@@ -1,33 +1,33 @@
 {
-    "name": "haoutil",
-    "version": "2.5.2",
-    "description": "JS常用静态方法类库",
-    "main": "gulpfile.js",
-    "keywords": [
-        "haoutil",
-        "jslib"
-    ],
-    "scripts": {
-        "build": "gulp build"
-    },
-    "devDependencies": {
-        "gulp": "^4.0.2",
-        "gulp-concat": "^2.6.1",
-        "gulp-header": "^2.0.7",
-        "gulp-uglify": "^3.0.2"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/muyao1987/haoutil.git"
-    },
-    "bugs": {
-        "url": "https://github.com/muyao1987/haoutil/issues",
-        "email": "wh@marsgis.cn"
-    },
-    "author": {
-        "name": "火星科技 木遥",
-        "url": "http://www.marsgis.cn"
-    },
-    "license": "ISC",
-    "homepage": "https://github.com/muyao1987/haoutil"
+  "name": "haoutil",
+  "version": "2.5.3",
+  "description": "JS常用静态方法类库",
+  "main": "gulpfile.js",
+  "keywords": [
+    "haoutil",
+    "jslib"
+  ],
+  "scripts": {
+    "build": "gulp build"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-header": "^2.0.7",
+    "gulp-uglify": "^3.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muyao1987/haoutil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/muyao1987/haoutil/issues",
+    "email": "wh@marsgis.cn"
+  },
+  "author": {
+    "name": "火星科技 木遥",
+    "url": "http://www.marsgis.cn"
+  },
+  "license": "ISC",
+  "homepage": "https://github.com/muyao1987/haoutil"
 }

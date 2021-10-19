@@ -84,7 +84,7 @@ haoutil.str = (function () {
 
     //格式化时间
     function formatTime(strtime) {
-        var numtime = Number(strtime);
+        strtime = Number(strtime)||0;
 
         if (strtime < 60)
             return strtime.toFixed(0) + "秒";
