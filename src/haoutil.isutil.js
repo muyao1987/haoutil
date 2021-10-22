@@ -27,10 +27,9 @@ haoutil.isutil = (function () {
         return (typeof obj == 'function') && obj.constructor == Function;
     }
 
-    function isObject(obj) {
-        return (typeof obj == 'object') && obj.constructor == Object;
+    function    isObject(obj) {
+        return Object.prototype.toString.call(obj) === "[object Object]";
     }
-
 
 
     function isNull(value) { 

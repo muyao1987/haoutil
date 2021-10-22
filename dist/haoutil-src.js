@@ -2,10 +2,18 @@
 *  JS常用静态方法类库  
 *  源码地址：https://github.com/muyao1987/haoutil
 *  版本信息：v2.5.4
-*  编译日期：2021-10-19 19:06:03    
+*  编译日期：2021-10-22 19:40:50    
 *  版权所有：Copyright by 火星科技 木遥  http://marsgis.cn
 */
 var haoutil = haoutil || {};
+
+if(typeof exports === 'object'){ 
+    exports.haoutil = haoutil
+}
+else{
+    window.haoutil = haoutil
+}
+
 
 haoutil.version = "2.5.4";
 haoutil.name = "木遥 通用常用JS方法类库";
@@ -396,10 +404,9 @@ haoutil.isutil = (function () {
         return (typeof obj == 'function') && obj.constructor == Function;
     }
 
-    function isObject(obj) {
-        return (typeof obj == 'object') && obj.constructor == Object;
+    function    isObject(obj) {
+        return Object.prototype.toString.call(obj) === "[object Object]";
     }
-
 
 
     function isNull(value) { 

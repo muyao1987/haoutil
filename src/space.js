@@ -1,5 +1,13 @@
 var haoutil = haoutil || {};
 
+if(typeof exports === 'object'){ 
+    exports.haoutil = haoutil
+}
+else{
+    window.haoutil = haoutil
+}
+
+
 haoutil.version = "2.5.4";
 haoutil.name = "木遥 通用常用JS方法类库";
 haoutil.author = "木遥 , 微信: http://marsgis.cn/weixin.html";

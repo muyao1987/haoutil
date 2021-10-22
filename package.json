@@ -2,7 +2,7 @@
   "name": "haoutil",
   "version": "2.5.4",
   "description": "JS常用静态方法类库",
-  "main": "gulpfile.js",
+    "main": "dist/haoutil-src.js",
   "keywords": [
     "haoutil",
     "jslib"
