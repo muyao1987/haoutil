@@ -11,7 +11,8 @@
     "jslib"
   ],
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "push": "npm publish"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
