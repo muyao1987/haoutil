@@ -1,1 +1,31 @@
+.DS_Store
 node_modules
+/dist
+lib/CesiumUnminified/
+mars3d-*src.*
+!mars3d-supermap-src.js*
+!mars3d-tdt-src.js*
+!mars3d-widget-src.js*
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+# System Files
+.DS_Store
+Thumbs.db
