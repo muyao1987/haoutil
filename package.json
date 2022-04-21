@@ -1,6 +1,6 @@
 {
   "name": "haoutil",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "JS常用静态方法类库",
   "main": "dist/haoutil-src.js",
   "files": [
