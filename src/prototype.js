@@ -1,5 +1,11 @@
 /* eslint-disable no-extend-native */
 
+/**
+ * prototype - JS 原生对象原型扩展模块。
+ * 为 String 补充 startsWith / endsWith / replaceAll 兜底实现（低版本浏览器兼容），
+ * 并为 Date 扩展 format 方法，支持将日期格式化为指定格式的字符串。
+ */
+
 //js原生对象扩展
 
 String.prototype.startsWith =

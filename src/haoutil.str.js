@@ -1,8 +1,19 @@
 // "字符串 相关操作类";
+/**
+ * haoutil.str - 字符串相关操作模块。
+ * 提供中文字符判断、长度/面积/时长的单位换算格式化、Base64 编解码等常用方法。
+ */
 haoutil.str = (function () {
   //============内部私有属性及方法============
 
-  //判断字符是否是中文字符
+  /**
+   * 判断字符串中是否含有中文字符（含全角标点区间）
+   * @param {String} s 待判断的字符串
+   * @return {Boolean} 含有中文时返回 true
+   * @example
+   * haoutil.str.isChinese("hello"); // false
+   * haoutil.str.isChinese("你好"); // true
+   */
   function isChinese(s) {
     var patrn = /[\u4E00-\u9FA5]|[\uFE30-\uFFA0]/gi;
     if (!patrn.exec(s)) {
@@ -12,7 +23,16 @@ haoutil.str = (function () {
     }
   }
 
-  /**  单位换算，格式化显示长度     */
+  /**
+   * 进行单位换算，格式化显示长度值
+   * @param {Number|String} val 长度值（单位为米）
+   * @param {String} [unit] 目标单位，支持 "m"（米）、"km"（公里）、"mile"（海里）、"zhang"（丈）；缺省或为 "auto" 时按值大小自动选择米或公里
+   * @return {String} 格式化后的字符串，入参为空时返回空字符串
+   * @example
+   * haoutil.str.formatLength(800); // "800.00米"
+   * haoutil.str.formatLength(1500); // "1.50公里"
+   * haoutil.str.formatLength(1000, "mile"); // "0.54海里"
+   */
   function formatLength(val, unit) {
     if (val == null) {
       return "";
@@ -46,7 +66,15 @@ haoutil.str = (function () {
     return valstr;
   }
 
-  /**  进行单位换算，格式化显示面积    */
+  /**
+   * 进行单位换算，格式化显示面积值
+   * @param {Number|String} val 面积值（单位为平方米）
+   * @param {String} [unit] 目标单位，支持 "m"（平方米）、"km"（平方公里）、"mu"（亩）、"ha"（公顷）；缺省或为 "auto" 时按值大小自动选择平方米或平方公里
+   * @return {String} 格式化后的字符串，入参为空时返回空字符串
+   * @example
+   * haoutil.str.formatArea(800); // "800.00平方米"
+   * haoutil.str.formatArea(3000, "mu"); // "4.50亩"
+   */
   function formatArea(val, unit) {
     if (val == null) {
       return "";
@@ -81,7 +109,13 @@ haoutil.str = (function () {
     return valstr;
   }
 
-  //格式化时间
+  /**
+   * 将秒数格式化为易读的时长描述
+   * @param {Number|String} strtime 时长（单位为秒）
+   * @return {String} 格式化后的时长，形如 "59秒"、"5分钟30秒"、"2小时30分钟"
+   * @example
+   * haoutil.str.formatTime(330); // "5分钟30秒"
+   */
   function formatTime(strtime) {
     strtime = Number(strtime) || 0;
 
@@ -100,8 +134,8 @@ haoutil.str = (function () {
 
   /**
    * @description 将二进制序列转换为Base64编码
-   * @param {String}
-   * @return {String}
+   * @param {String} bitString 二进制序列
+   * @return {String} Base64编码后的字符串
    */
   function binToBase64(bitString) {
     var result = "";
@@ -122,8 +156,8 @@ haoutil.str = (function () {
 
   /**
    * @description 将base64编码转换为二进制序列
-   * @param {String}
-   * @return {String}
+   * @param {String} str Base64编码的字符串
+   * @return {String} 二进制序列
    */
   function base64ToBin(str) {
     var bitString = "";
@@ -164,10 +198,24 @@ haoutil.str = (function () {
     }
     return result;
   }
+  /**
+   * 将字符串编码为 Base64
+   * @param {String} str 原始字符串
+   * @return {String} Base64 编码后的字符串
+   * @example
+   * haoutil.str.base64("hello"); // "aGVsbG8="
+   */
   function base64(str) {
     return binToBase64(stringToBin(str));
   }
 
+  /**
+   * 将 Base64 编码的字符串解码还原
+   * @param {String} str Base64 编码的字符串
+   * @return {String} 解码后的原始字符串
+   * @example
+   * haoutil.str.decodeBase64("aGVsbG8="); // "hello"
+   */
   function decodeBase64(str) {
     return BinToStr(base64ToBin(str));
   }

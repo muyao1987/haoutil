@@ -1,12 +1,29 @@
+/**
+ * haoutil.math - 数学计算相关操作模块。
+ * 提供随机数、随机数组元素、数字补零等常用方法。
+ */
 haoutil.math = (function () {
-  // "数学 相关操作类";
   //============内部私有属性及方法============
 
+  /**
+   * 生成 [min, max] 范围内的随机整数（含两端）
+   * @param {Number} min 最小值
+   * @param {Number} max 最大值
+   * @return {Number} 随机整数
+   * @example
+   * haoutil.math.random(1, 100); // 例如 42
+   */
   function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  //随机数组中随机取1个元素
+  /**
+   * 从数组中随机取出 1 个元素
+   * @param {Array} arr 目标数组
+   * @return {*} 随机取出的元素
+   * @example
+   * haoutil.math.getArrayRandomOne(["a", "b", "c"]); // 例如 "b"
+   */
   function getArrayRandomOne(arr) {
     let n = random(0, arr.length - 1);
     return arr[n];
